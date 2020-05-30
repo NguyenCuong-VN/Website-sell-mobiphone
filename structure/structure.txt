@@ -1,0 +1,531 @@
+﻿ĐỐI TƯỢNG:
+    1.khách hàng:
+        -đăng nhập, đăng ký, xem, chỉnh sửa thông tin tài khoản
+        -xem hàng hóa, chi tiết hàng hóa
+        -đặt hàng, thêm hàng vào giỏ
+        -xem giỏ hàng
+        -chat với nhân viên bán hàng
+        -xem lịch sử mua hàng
+        -xem chi tiết các đơn hàng, xuất hóa đơn
+    2. SysAdmin: 
+        -quản lý quyền các user
+        -thống kê các thông tin doanh thu
+    3.Nhân viên bán hàng:
+        -xem hàng hóa, chi tiết hàng hóa
+        -xem tất cả các đơn hàng
+        -chat với khách hàng
+    4.Nhân viên quản lý hàng hóa:
+        -thêm, sửa, xóa hàng hóa
+        -thêm, sửa, xóa danh mục hàng hóa
+        -xem tổng hàng hóa trong web
+    
+
+
+
+khách hàng vào web -> đi đến trang chủ -> xem hàng hóa, chat với nhân viên tại trang chủ -> click vào hàng hóa để xem chi tiết, thêm hàng vào giỏ (nếu đã đăng nhập), đặt hàng (nếu đã đăng nhập)-> kiểm tra lịch sử giao dịch(nếu đã đăng nhập) -> click vào lịch sử giao dịch để xem chi tiết đơn hàng, có thể xuất ra hóa đơn (nếu đã đăng nhập)
+nhân viên bán hàng đăng nhập vào trang admin ->kiểm tra các đơn hàng để tư vấn cho khách hàng
+Nhân viên quản lý hàng đăng nhập trang admin -> thêm sửa xóa các danh mục, hàng hóa, xem thống kê hàng hóa
+SysAdmin đăng nhập trang admin -> có mọi quyền quản lý, thêm sửa xóa account user, xem các thông tin doanh thu
+
+
+CHỨC NĂNG:
+
+
+(khach) đăng nhập, đăng ký, xem, chỉnh sửa thông tin account
+(khach)xem hàng hóa, tìm kiếm hàng hóa, chi tiết hàng hóa
+(khach)đặt hàng, thêm hàng vào giỏ
+(khach)xem giỏ hàng
+(khach)chat với nhân viên bán hàng
+(khach)xem lịch sử mua hàng cá nhân
+(khach)xem chi tiết các đơn hàng, xuất hóa đơn
+
+(trang quản lý riêng):
+    (nhân viên tư vấn)đăng nhập, xem, chỉnh sửa thông tin account 
+    (nhân viên tư vấn)xem hàng hóa, tìm kiếm hàng hóa, chi tiết hàng hóa  (giống khách hàng)
+    (nhân viên tư vấn)xem các đơn hàng, tìm kiếm các đơn hàng
+    (nhân viên tư vấn)chat với khách hàng
+
+    (nhân viên quản lý hàng)đăng nhập,  xem, chỉnh sửa thông tin account   
+    (nhân viên quản lý hàng)xem hàng hóa, tìm kiếm hàng hóa, chi tiết hàng hóa  (giống khách hàng)
+    (nhân viên quản lý hàng)thêm, sửa, xóa hàng hóa
+    (nhân viên quản lý hàng)thêm, sửa, xóa danh mục hàng hóa
+    (nhân viên quản lý hàng)quản lý đơn hàng
+    (nhân viên quản lý hàng)xem tổng số lượng các hàng hóa
+
+    (SysAdmin)đăng nhập, xem, chỉnh sửa thông tin account 
+    (SysAdmin)xem hàng hóa, tìm kiếm hàng hóa, chi tiết hàng hóa    (giống khách hàng)
+    (SysAdmin)quản lý user (các user admin)
+    (SysAdmin)thống kê doanh thu
+    (SysAdmin) xem thông tin phản hồi của khách hàng
+
+
+MÔ TẢ CHI TIẾT:
+    1.khách hàng:
+        -đăng nhập: 
+            # mô tả: Chức năng đăng nhập người dùng  
+            # đầu vào: Người dùng click vào nút đăng nhập và thực hiện điền thông tin vào form bao gồm username và password.
+            # xử lý:    hệ thống kiêmr tra các trường bắt buộc
+                        hệ thống xác thực tài khoản người dùng, nếu có thực hiện đăng nhập vào trang chủ, nếu không thông báo sai tài khoản
+            # đầu ra:   thông báo kết quả cho người dùng
+        -đăng ký:
+            # mô tả: chức năng đăng ký cho phép người dùng tạo tài khoản
+            # đầu vào:người dùng cung cấp thông tin cần thiết để tạo tài khoản
+            # xử lý:    hệ thống kiểm tra các trường bắt buộc, các định dạng đã đúng chưa, nếu chưa thông báo cho người dùng nhập lại
+                        hệ thống kiểm tra tên đăng nhập đã có trong csdl chưa? nếu có yêu cầu đổi tên đăng nhập
+                        sau khi kiểm tra tất cả thông tin đã đúng thì thực hiện thêm mới account vào csdl
+            # đầu ra: thông báo cho người dùng đăng  ký thành công và login vào trang chủ
+        -xem thông tin account:
+            # mô tả: chức năng cho phép người dùng xem các thông tin tài khoản của mình
+            # đầu vào: người dùng click vào thông tin cá nhân
+            # xử lý: hệ thống truy xuất dữ liệu tài khoản từ csdl ra 
+            # đầu ra: hiển thị thông tin người dùng
+        -sửa thông tin account:
+            # mô tả: giúp người dùng sửa thông tin ài khoản của mình
+            # đầu vào: người dùng click vào nút sửa thông tin
+            # xử lý:    hiển thị thông tin dưới dạng có thể chỉnh sửa để người dùng chỉnh sửa thông tin
+                        hệ thống kiểm tra các trường bắt buộc, các định dạng đã đúng chưa, nếu chưa thông báo cho người dùng nhập lại
+                        hệ thống kiểm tra tên đăng nhập đã có trong csdl chưa? nếu có yêu cầu đổi tên đăng nhập
+                        sau khi kiểm tra tất cả thông tin đã đúng thì thực hiện chỉnh sửa csdl
+            # đầu ra: thông báo cho người dùng và hiển thị lại thông tin người dùng
+        -đổi mật khẩu: 
+            # mô tả: giúp người dùng đổi mật khẩu
+            # đầu vào: người dùng click vào nút đổi mật khẩu 
+            # xử lý:    hệ thống hiển thị bảng đổi mật khẩu cho người dùng 
+                        hệ thống kiểm tra xem mật khẩu cũ đã đúng chưa, nếu chưa thông báo cho người dùng
+                        hệ thống kiểm tra xem mật khẩu mới ở 2 ô pwd và repwd đã trùng nhau chưa, nếu chưa thông báo cho người dùng
+                        thực hiện cập nhật csdl
+            # đầu ra: thông báo cho người dùng
+        -quên mật khẩu:
+            # mô tả: giúp người dùng lấý lại mật khẩu
+            # đầu vào:người dùng click vào nút quên mật khẩu
+            # xử lý:    hệ thống kiểm tra người dùng đã nhập email chưa, nếu chưa thì thông báo
+                        hệ thống kiểm tra email có trong csdl không, nếu không thông báo
+                        hệ thống gửi pwd về email của người dùng và thông báo 
+            # đầu ra: thông báo cho người dùng
+        -xem chi tiết hàng hóa:    
+            # mô tả: giúp người dùng xem thông tin chi tiết hàng hóa
+            # đầu vào: người dùng click vào sản phẩm
+            # xử lý: hệ thống truy xuất csdl hàng hóa và hiển thị cho người dùng
+            # đầu ra: hiển thị thông tin chi tiết hàng hóa 
+        -tìm kiếm hàng hóa:
+            # mô tả: giúp người dùng tìm kiếm hàng hóa 
+            # đầu vào: người dùng click vào ô tìm kiếm 
+            # xử lý:    hệ thống kiểm tra xem người dùng đã nhập thông tin tìm kiếm chưa, nếu chưa thông báo
+                        hệ thống truy xuất csdl theo thông tin người dùng nhập vào
+            # đầu ra: hiển thị các sản phẩm theo thông tin người dùng nhập vào
+        -thêm hàng vào giỏ:
+            # mô tả: giúp người dùng thêm sản phẩm vào giỏ hàng
+            # đầu vào: người dùng click vào nút thêm vào giỏ hàng tương ứng với sản phẩm mong muốn
+            # xử lý:    hệ thống kiểm tra hàng đã có trong giỏ chưa, nếu rồi thông báo cho người dùng
+                        hệ thống cập nhật csdl giỏ hàng cho người dùng 
+            # đầu ra: thông báo cho người dùng
+        -xem giỏ hàng:
+            # mô tả: giúp người dùng xem giỏ hàng
+            # đầu vào: người dùng click vào nút xem giỏ hàng
+            # xử lý:    hệ thống truy xuất csdl các hàng trong giỏ hiện thị cho người dùng
+            # đầu ra: hiển thị các sản phẩm trong giỏ hàng của người dùng
+        -xóa hàng khỏi giỏ:
+            # mô tả: giúp người dùng xóa hàng khỏi giỏ
+            # đầu vào: người dùng click chọn các mặt hàng và nhấn vào nút xóa hàng khỏi giỏ
+            # xử lý:    kiểm tra xem có hàng nào được đánh dấu hay không, nếu không thông báo cho người dùng
+                        hệ thống cập nhật csdl xóa các hàng được đánh dấu xóa
+            # đầu ra: thông báo và cập nhật giỏ hàng cho người dùng
+        -đặt 1 hàng:
+            # mô tả: giúp người dùng đặt 1 sản phẩm 
+            # đầu vào: người dùng click vào nút đặt hàng tại sản phẩm tương ứng
+            # xử lý:    kiểm tra xem hàng có còn hay không, nếu không thông báo cho người dùng
+                        hệ thống hiển thị thông tin sản phẩm và thông tin đặt hàng, thanh toán cho người dùng chỉnh sửa
+                        hệ thống thực hiện cập nhật csdl đơn hàng và thông báo cho người dùng
+            # đầu ra: thông báo cho người dùng
+        -đặt hàng trong giỏ
+            # mô tả: giúp người dùng đặt các hàng trong giỏ
+            # đầu vào: người dùng chọn các mặt hàng và click vào nút đặt hàng
+            # xử lý:    hệ thống kiểm tra xem người dùng đã chọn hàng hay chưa, nếu chưa thông báo
+                        hệ thống hiển thị thông tin các sản phẩm và thông tin đặt hàng, thanh toán cho người dùng chỉnh sửa
+                        hệ thống thực hiện cập nhật csdl đơn hàng và thông báo cho người dùng
+            # đầu ra: thông báo cho người dùng
+        -chat với nhân viên bán hàng
+            # mô tả: giúp người dùng chat với nhân viên bán hàng
+            # đầu vào: người dùng click vaò nút messenger của facebook
+            # xử lý:    các nhân viên bán hàng từ page sẽ tư vấn cho khách hàng
+            # đầu ra:
+        -xem lịch sử mua hàng:
+            # mô tả: giúp người dùng xem lịch sử mua hàng
+            # đầu vào: người dùng click vào nút lịch sử mua hàng
+            # xử lý: hệ thống truy xuất csdl và hiển thị các đơn hàng của người dùng
+            # đầu ra: hiển thị lịch sử mua hàng, trạng thái đơn hàng cho người dùng
+        -xem chi tiết từng lịch sử mua hàng:
+            # mô tả: giúp người dùng xem thông tin chi tiết từng đơn hàng
+            # đầu vào: người dùng click vào tên đơn hàng
+            # xử lý: hệ thống truy xuất csdl lấy thông tin chi tiết về đơn hàng cho người dùng
+            # đầu ra: hiển thị thông tin chi tiết, tiên độ đơn hàng cho người dùng
+        -xuất hóa đơn các đơn hàng đã hoàn thành:
+            # mô tả: giúp người dùng xuất hóa đơn các đơn hàng đã hoàn thành
+            # đầu vào: người dùng click vào nút xuất hóa đơn
+            # xử lý:    hệ thống tra thông tin trong csdl và xuất hóa đơn cho người dùng
+            # đầu ra: hóa đơn đơn hàng của người dùng
+    
+    2. nhân viên bán hàng:
+        -đăng nhập admin: 
+            # mô tả: Chức năng đăng nhập hệ thống admin
+            # đầu vào:  Người dùng click vào nút đăng nhập và thực hiện điền thông tin vào form bao gồm username và password.
+            # xử lý:    hệ thống kiểm tra các trường bắt buộc
+                        hệ thống xác thực tài khoản người dùng, nếu có thực hiện đăng nhập vào trang chủ, nếu không thông báo sai tài khoản
+            # đầu ra:   thông báo kết quả cho người dùng
+        -xem thông tin account:
+            # mô tả: chức năng cho phép admin xem các thông tin tài khoản của mình
+            # đầu vào: người dùng click vào ô thông tin cá nhân
+            # xử lý:    hệ thống truy xuất dữ liệu tài khoản từ csdl ra 
+            # đầu ra: hiển thị thông tin người dùng
+        -sửa thông tin account:
+            # mô tả: giúp người dùng sửa thông tin ài khoản của mình
+            # đầu vào: người dùng click vào nút sửa thông tin
+            # xử lý:    hiển thị thông tin dưới dạng có thể chỉnh sửa để người dùng chỉnh sửa thông tin (không tính các thông tin về quyền)
+                        hệ thống kiểm tra các trường bắt buộc, các định dạng đã đúng chưa, nếu chưa thông báo cho người dùng nhập lại
+                        hệ thống kiểm tra tên đăng nhập đã có trong csdl chưa? nếu có yêu cầu đổi tên đăng nhập
+                        sau khi kiểm tra tất cả thông tin đã đúng thì thực hiện chỉnh sửa csdl
+            # đầu ra: thông báo cho người dùng và hiển thị lại thông tin người dùng
+        -đổi mật khẩu: 
+            # mô tả: giúp người dùng đổi mật khẩu
+            # đầu vào: người dùng click vào nút đổi mật khẩu 
+            # xử lý:    hệ thống hiển thị bảng đổi mật khẩu cho người dùng 
+                        hệ thống kiểm tra xem mật khẩu cũ đã đúng chưa, nếu chưa thông báo cho người dùng
+                        hệ thống kiểm tra xem mật khẩu mới ở 2 ô pwd và repwd đã trùng nhau chưa, nếu chưa thông báo cho người dùng
+                        thực hiện cập nhật csdl
+            # đầu ra: thông báo cho người dùng
+        -quên mật khẩu:
+            # mô tả: giúp người dùng lấý lại mật khẩu
+            # đầu vào:người dùng click vào nút quên mật khẩu
+            # xử lý:    hệ thống kiểm tra người dùng đã nhập email chưa, nếu chưa thì thông báo
+                        hệ thống kiểm tra email có trong csdl không, nếu không thông báo
+                        hệ thống gửi pwd về email của người dùng và thông báo 
+            # đầu ra: thông báo cho người dùng
+        -xem tất cả các đơn hàng
+            # mô tả: giúp người bán hàng xem tất cả các đơn hàng trên web
+            # đầu vào: người dùng click vào nút đơn hàng
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống truy xuất csdl và hiển thị 
+            # đầu ra:  các đơn hàng hoặc thông báo quyền
+        -tìm kiếm đơn hàng:
+            # mô tả: giúp nhân viên tìm kiếm đơn hàng
+            # đầu vào: nhân viên nhập thông tin và nhấn nút tìm kiếm 
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        kiểm tra xem các trường thông tin đã nhập chưa, nếu chưa thông báo
+                        hệ thống truy xuất đơn hàng theo các thông tin nhân viên nhập vào và hiển thị ra
+            # đầu ra: hiển thị các đơn hàng theo từ khóa hoặc thông báo
+        -chat với khách hàng
+            # mô tả: giúp nhân viên tư vấn khách hàng
+            # đầu vào: người dùng nhắn tin vào page fb của web
+            # xử lý:    nhân viên tư vấn cho khách
+            # đầu ra: 
+    3.Nhân viên quản lý hàng hóa:
+        -đăng nhập admin: 
+        -xem thông tin account:
+        -sửa thông tin account:
+        -đổi mật khẩu: 
+        -quên mật khẩu:
+
+        -danh sách hàng hóa: 
+            # mô tả: giúp người quản lý hàng hóa xem hàng hóa
+            # đầu vào:  người dùng nhấn nút danh sách
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng danh sách hàng hóa
+            # đầu ra:bảng hàng hóa
+        -thêm hàng hóa:       
+            # mô tả: giúp người quản lý hàng hóa thêm hàng hóa
+            # đầu vào:  người dùng nhấn nút thêm hàng hóa 
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng thong tin hàng hóa đẻ người dùng nhập
+                        hệ thống kiểm tra các trường, nếu có vấn đề thì thông báo
+                        hệ thống cập nhật csdl hàng hóa
+            # đầu ra:thông báo cho người dùng
+        -sửa hàng hóa
+            # mô tả: giúp người quản lý sửa thông tin hàng hóa
+            # đầu vào: người quản lý chọn hàng và click nút sửa hàng hóa
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng thong tin hàng hóa đẻ người dùng nhập
+                        hệ thống kiểm tra các trường, nếu có vấn đề thì thông báo
+                        hệ thống cập nhật csdl hàng hóa
+            # đầu ra:thông báo cho người dùng
+        -xóa hàng hóa
+            # mô tả: giúp nguời quản lý xóa hàng hóa
+            # đầu vào: người quản lý chọn hàng hóa và click nút xóa
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng thong tin các hàng hóa sẽ xóa để xác nhận
+                        hệ thống cập nhật csdl hàng hóa
+            # đầu ra: thông báo cho người dùng
+        -xem, thêm, sửa, xóa danh mục hàng hóa : 
+            #mô tả: giống sản phẩm
+        -xem danh sách đơn hàng:
+            # mô tả: giúp người quản lý hàng hóa xem danh sách đơn hàng
+            # đầu vào:  người dùng nhấn nút danh sách đơn hàng
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng danh sách đơn hàng
+            # đầu ra:bảng danh sách đơn hàng
+        -cập nhật trạng thái đơn hàng:
+            # mô tả: giúp người quản lý cập nhật trạng thái đơn hàng
+            # đầu vào: người quản lý chọn hàng và click nút cập nhật trạng thái đơn hàng
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng trạng thái đơn hàng
+                        hệ thống kiểm tra các trường, nếu có vấn đề thì thông báo
+                        hệ thống cập nhật csdl đơn hàng
+            # đầu ra:thông báo cho người dùng
+        -xem tổng số lượng hàng hóa:
+            # mô tả: giúp người dùng xem tổng hàng hóa
+            # đầu vào: người dùng click vào tổng hàng hóa và chọn tổng theo (danh mục hàng hóa, ... )
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị thông tin tổng hàng hóa
+            # đầu ra:  tổng số lượng hàng hóa
+    4.SysAdmin:
+        -đăng nhập admin: 
+        -xem thông tin account:
+        -sửa thông tin account:
+        -đổi mật khẩu: 
+        -quên mật khẩu:
+
+        -xem danh sách user:
+            # mô tả: giúp admin xem danh sách các user
+            # đầu vào: admin click vào nút danh sách user
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng danh sách các user
+            # đầu ra: bảng user
+        - tìm user:
+            # mô tả: giúp admin tìm các user
+            # đầu vào: admin nhập thông tin user và click nút tìm kiếm
+            # xử lý:    hệ thống hiển thị các user theo keyword
+            # đầu ra:  hiển thị các user tìm thấy
+        - xem thông tin user:
+            # mô tả: giúp admin xem thông tin chi tiết của các user
+            # đầu vào: admin click vào tên user
+            # xử lý:    hệ thống truy xuất csdl hiển thị thông tin chi tiết của user
+            # đầu ra: thông tin user
+        - xóa user: 
+            # mô tả: giúp admin xóa user
+            # đầu vào: admin chọn user và click vào nút xóa
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống cập nhật csdl user 
+            # đầu ra: hiển thị thông báo và cập nhật bảng user
+        - thêm user: 
+            # mô tả: giúp admin thêm user
+            # đầu vào: admin click vào nút thêm
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hiển thị bảng thông tin để admin nhập thông tin user
+                        hệ thống kiểm tra các trường nhập vào và thông báo nếu có lỗi
+                        hệ thống cập nhật csdl user 
+            # đầu ra: hiển thị thông báo và cập nhật bảng user
+        -xem quyền của các user:
+            # mô tả: giúp admin xem các quyền truy cập hệ thống của user
+            # đầu vào: admin click vào nút quản lý quyền
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng các quyền tương ứng với từng user
+            # đầu ra: bảng quyền user
+        -sửa quyền của các user:
+            # mô tả: giúp admin sửa quyền các user
+            # đầu vào:  admin chọn user và click nút sửa quyền
+            # xử lý:    hệ thống kiểm tra quyền của người dùng, nếu không có quyền thì thông báo
+                        hệ thống hiển thị bảng các quyền của user và cho phép admin chỉnh sửa
+                        hệ thống cập nhật csdl user
+            # đầu ra: thông báo cho admin
+        -thống kê doanh thu:
+            # mô tả: giúp admin tạo báo cáo thống kê doanh thu
+            # đầu vào: chọn nút được thiết kế sẵn để thực hiện chức năng tương ứng
+            # xử lý:    kiểm tra admin chọn nút nào
+                        truy xuất csdl tương ứng và xuất ra thông tin
+            # đầu ra: bảng thống kê tương ứng
+        -xem thông tin phản hồi của khách hàng:
+            # mô tả: giúp admin xem phản hồi của khách hàng
+            # đầu vào: chọn nút được thiết kế sẵn để thực hiện chức năng tương ứng
+            # xử lý:    kiểm tra admin chọn nút nào
+                        truy xuất csdl tương ứng và xuất ra thông tin
+            # đầu ra: bảng thống kê tương ứng
+
+
+CƠ SỞ DỮ LIỆU
+    1.customer: lưu trữ thông tin khách hàng
+        -id: int primary key-not null - auto increase- unique
+        -username:  varchar(30)- not null- unique 
+        -pwd_hash:  varchar(...) - not null
+        -full_name: varchar(100) -not null
+        -email:   varchar(50)- unique  - defaul null
+        -phone:   varchar(15) -unique  - defaul null
+        -address: varchar(50) - defaul null
+        -created_at: Date
+        -update_at:  Date
+        -pwd_reset_token: varchar(10) - unique - not null
+        -avatar_link:  varchar(50)  (để mặc định không cho thay đổi)
+        -bank_number:  varchar(20) - default null
+    2.comment: bình luận của khách hàng
+        -id:   int primary key-not null - auto increase- unique
+        -id_customer:  int -not null 
+        -id_product:  int - not null
+        -content:  varchar(...) - not null 
+        -create_at: varchar()
+        -amount:  int
+   
+    4.giỏ hàng: giỏ hàng của khách hàng
+        -id:   int primary key-not null - auto increase- unique
+        -id_customer:   int -not null
+        -id_product:  int  - not null
+        -create_at:  varchar()
+    5.orders: thông tin đơn hàng
+        -id:   int primary key-not null - auto increase- unique
+        -customer_id:   int -not null
+        -create_at: varchar()
+        -status_order_id:  int - not null  
+        -address_ship: varchar(50) - not null 
+        -phone_number_order:  varchar(15) - not null
+        -deliver_id:  int - not null 
+        -payment_id:  int - not null 
+        -info_payment: varchar(20) - default null
+        -update_at: varchar()
+        -total_price:  varchar(50) - not null
+    6.status_order:
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null 
+        -description:  varchar(50) - not null
+    7.products_in_order: sản phẩm trong đơn hàng
+        -id:   int primary key-not null - auto increase- unique
+        -id_product:   int -not null
+        -id_order:   int -not null
+        -amount:  int - not null
+        -price:   varchar(50) - not null
+
+    8.contact: lưu thông tin phản hồi của khách hàng
+        -id:   int primary key-not null - auto increase- unique
+        -id_customer:   int -not null
+        -content:  varchar(50) - not null
+        -create_at: varchar()
+    9.infomation_company: thông tin công ty
+        -name:  varchar(20) - not null
+        -email:  varchar(50) - not null
+        -phone:  varchar(15) - not null
+        -address:  varchar(50) - not null
+    10.payment: phương thức thanh toán
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -create_at: varchar()
+        -update_at: varchar()
+        -status:  int - default 0   (0-phương thức chưa được áp dụng, 1 ngược lại)
+    11.deliver: lưu trữ các phương thức vận chuyển
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -create_at: varchar()
+        -update_at: varchar()
+        -status:   int - default 0   (0-phương thức chưa được áp dụng, 1 ngược lại)
+    
+
+    12.category: danh mục sản phẩm
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -create_at: varchar()
+        -update_at: varchar()
+        -description: varchar()
+    13.product: sản phẩm
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -image_thumbnail:  varchar(20) - để mặc định không cho thay đổi
+        -content:  varchar(50) - not null
+        -price:  varchar(20) - not null
+        -percent_sale:  varchar(20) 
+        -sale_price:  varchar(20) 
+        -category_id:   int -not null
+        -amount: int - not null (số lượng hàng, nếu >999 thì ghi max, =0 ghi hết hàng)
+        -create_at: varchar()
+        -update_at: varchar()
+    14.image_product: hình ảnh sản phẩm
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -id_product:  int -not null
+        -image_link:  int -not null
+    15.color:  màu 
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -create_at: varchar()
+        -update_at: varchar()
+    16.product_color: màu sản phẩm
+        -id:   int primary key-not null - auto increase- unique
+        -id_product:   int -not null
+        -id_color:   int -not null
+    17.user: lưu thông tin user của trang admin
+        -id:   int primary key-not null - auto increase- unique
+        -username:  varchar(30)- not null- unique 
+        -pwd_hash:  varchar(...) - not null
+        -full_name: varchar(100) -not null  (không cho sửa)
+        -email:  varchar(50)- unique  
+        -phone:  varchar(11) -unique  - defaul null
+        -created_at:  Date  (không cho sửa)
+        -update_at:  Date
+        -pwd_reset_token:  varchar(10) - unique - not null
+        -avatar_image:  varchar(50)  (để mặc định không cho thay đổi)
+        -position_id:  int - not null (không cho sửa)
+        -ID_employee_number: varchar(50) - unique - not null (không cho sửa)
+
+    18.position:  vị trí nhân viên
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -description:  varchar(50) - not null
+        -status : varchar()
+    19.permission:   quyền quản lý trang web
+        -id:   int primary key-not null - auto increase- unique
+        -name:  varchar(20) - not null
+        -status: int - default 0   (0-quyền chưa được áp dụng, 1 ngược lại)
+        -description:  varchar(50) - not null
+    20.permission_of_position:  quyền của các vị trí
+        -id:   int primary key-not null - auto increase- unique
+        -id_position:   int -not null
+        -id_permisstion:   int - not null
+
+    
+    
+GIAO DIỆN
+    tất cả các trang đều sẽ có header-footer giống nhau 
+        -header:    tên web, tên người dùng(nếu có), đăng nhập/đăng xuất(nếu có),...
+        -footer:    information company, các liên kết social network, map... 
+
+    1. trang home
+        -mô tả: trang index khi người dùng truy cập vào. Tại đây hiển thị các danh mục, các sản phẩm, ô tìm kiếm sản phẩm, chat với nhân viên...  
+    2. trang đăng nhập
+        -mô tả: trang giúp khách hàng đăng nhập vào hệ thống, hoặc đăng ký, quên tài khoản,..
+    3. trang chi tiết
+        -mô tả: trang hiển thị chi tiết của sản phẩm, tại đay có thể đặt hàng sản phẩm hoặc thêm sp vào giỏ,...
+    4.trang giỏ hàng 
+        -mô tả: trang hiển thị các sản phẩm trong giỏ hàng, có thể click để đi đến sản phẩm hoặc đặt hàng theo giỏ, chỉnh sửa sản phẩm trong giỏ,...                   
+    5.trang thanh toán
+        -mô tả: thực hiện thanh toán, khách hàng có thể chỉnh sửa thông tin thanh toán, phương thức vận chuyển, thanh toán ở đây
+    6.trang tài khoản (còn hiển thị tài khoản, hiển thị lịch sử đơn hàng)
+        -mô tả: trang hiển thị thông tin cá nhân của tài khoản, có thể chỉnh sửa thông tin ở đây, có thể đi đến giỏ hàng từ đây 
+    7.trang about
+        -mô tả:  hiển thị thông tin
+    8.trang đăng nhập admin
+        -mô tả: trang giúp user đăng nhập vào trang quản lý của admin, quên tài khoản,..
+    9.trang quản lý dữ liệu của admin
+        -mô tả: trang quản lý tổng hợp dữ liệu của admin (ds user, thêm sửa xóa, thống kê...)
+	
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

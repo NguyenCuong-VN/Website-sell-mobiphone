@@ -1,0 +1,56 @@
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="http://localhost/dienthoaididong/index.php"><img src="http://localhost/dienthoaididong/image/logo.jpg" class="img.embed-responsive" alt="logo" width="280" height="70"></a>
+                </div>
+                <div class="col-md-1 offset-5">
+                    <br>
+                    <a href="http://localhost/dienthoaididong/myaccount.php" >
+                        <?php 
+                            if($_SESSION['name_customer'] == NULL) echo "Tài khoản";
+                            else echo $_SESSION['name_customer']; 
+                        ?>
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <br>
+                    <a href="http://localhost/dienthoaididong/login.php" style="color:dimgrey">Đăng nhập</a>
+                </div>             
+                <div class="col-md-1">
+                    <br>
+                    <a href="http://localhost/dienthoaididong/logout.php" style="color: dimgrey">Đăng xuất</a>
+                </div>
+            </div>
+            
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            ALL CATEGORIES
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=1">Iphone</a>
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=2">Samsung</a>
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=5">Xiaomi</a>
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=6">Huawei</a>
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=3">Oppo</a>
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=4">Vivo</a>
+                            <a class="dropdown-item" href="http://localhost/dienthoaididong/index.php?id_cate=7">Realme</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost/dienthoaididong/index.php">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost/dienthoaididong/help.php">ABOUT</a>
+                    </li>    
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <form type="GET" class="form-inline" action="http://localhost/dienthoaididong/index.php?">
+                        <input class="form-control ml-sm-2" type="text" placeholder="Tìm kiếm sản phẩm..." name="search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </ul>  
+            </nav>
+    </div> 
